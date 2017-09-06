@@ -266,10 +266,16 @@ U = mq \Rightarrow \frac{dU}{dq} = a \Rightarrow dU = adq
 So
 
 \begin{equation}
-T = \left(a\frac{\partial S}{\partial q}\right)^{-1} = \left(akN\frac{1}{N}\frac{1}{q/N}\right)^{-1} = \frac{q}{akN}
+T = a\left(\frac{\partial S}{\partial q}\right)^{-1} = a\left(kN\frac{1}{N}\frac{1}{q/N}\right)^{-1} = \frac{aq}{kN}
 \end{equation}
 
-\textbf{Commenter her!!}
+We can rewrite this:
+
+\begin{equation}
+aq = U = kNT
+\end{equation}
+
+Which is the familiar formula for energy as a function of temperature.
 
 \section{Part 2)}
 \subsection{k)}
@@ -321,11 +327,39 @@ S_+ = \frac{N}{2} + \frac{\Delta s}{2} = \frac{N}{2} + s, \qquad S_- = \frac{N}{
 We then see that we can rewrite \eqref{ONS+} as
 
 \begin{equation}
-\Omega(N,S_+) = \frac{N!}{(N/2 + s)!(N/2-s)!}
+\Omega(N,s) = \frac{N!}{(N/2 + s)!(N/2-s)!}
 \end{equation}
 
 \subsection{p)}
+We can use the multiplicity to get the probability if finding $s$:
 
+\begin{equation}
+P(N,s) = \frac{\Omega(N,s)}{\Omega_{total}} = 2^{-N}\frac{N!}{(N/2 + s)!(N/2-s)!} 
+\end{equation}
+
+This is the probability of getting $s$ when 'drawing' particle, in other words a binomial distribution. We know that the binomial distribution goes to a Gaussian  distribution as N becomes large. This means that
+
+\begin{equation}
+P(N,s) \rightarrow Ke^{-2s^2/N}
+\end{equation}
+
+Where K is some constant. From this we get back the multiplicity as
+
+\begin{equation}
+\Omega(N,s) = P(N,s)\cdot 2^N = 2^N Ke^{-2s^2/N}
+\end{equation}
+
+To find this constant, we just calculate:
+
+\begin{equation}
+\Omega(N,0) = 2^N K
+\end{equation}
+
+So we get that 
+
+\begin{equation}
+\Omega(N,s) = \Omega(N,0)e^{-2s^2/N}
+\end{equation}
 
 \end{document}
 
