@@ -1,0 +1,84 @@
+\documentclass[a4paper,norsk, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[norsk]{babel}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[dvips]{epsfig}
+\usepackage[toc,page]{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{cite} % [2,3,4] --> [2--4]
+\usepackage{shadow}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{marvosym }
+\usepackage{subcaption}
+\usepackage[noabbrev]{cleveref}
+\usepackage{cite}
+
+
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\setcounter{tocdepth}{2}
+
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+
+\lstset{language=c++}
+\lstset{alsolanguage=[90]Fortran}
+\lstset{alsolanguage=Python}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{white}}
+\lstset{frame=single}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{red}\bfseries}
+\lstset{commentstyle=\itshape\color{blue}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\title{Fys2160 Oblig 2}
+\author{Daniel Heinesen, daniehei}
+\begin{document}
+\maketitle
+
+\section{Exercise 1)}
+
+\subsection{a)}
+The partition function is given as
+
+\begin{equation}
+Z = \sum_s e^{-E(s)/kT} = \sum_s e^{-E(s)\beta}
+\end{equation}\label{eq:partition}
+
+We have the energies $\epsilon_1 = \epsilon$ and $\epsilon_2 = \epsilon_3 = \epsilon_4 = 2\epsilon$, giving us the partition function:
+
+\begin{equation}
+Z = e^{-\beta \epsilon} + 3e^{-2\beta \epsilon}
+\end{equation}
+
+\subsection{b)}
+From the partition function we are able to find the average energy from the following equation:
+
+\begin{equation}
+\langle E \rangle = - \pd{\ln Z}{\beta}
+\end{equation}
+
+We can from this find the average energy for our system:
+
+\begin{equation}
+\langle E \rangle = -\pd{}{\beta} \ln \left(e^{-\beta\epsilon} +3e^{-2\epsilon\beta}\right)
+\end{equation}
+
+\begin{equation}
+= -\frac{-\epsilon e^{-\beta\epsilon} - 6\epsilon e^{-2\beta\epsilon}}{e^{-\beta\epsilon} +3e^{-2\epsilon\beta}}
+= \epsilon\frac{e^{\beta\epsilon} + 6}{e^{\beta\epsilon} +3}
+\end{equation}
+
+\end{document}
+
+
