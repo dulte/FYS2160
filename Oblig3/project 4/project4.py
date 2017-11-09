@@ -28,8 +28,8 @@ dT_cont = np.linspace(np.min(dT),np.max(dT),1000)
 plt.plot(dT,dQ,".")
 plt.plot(dT_cont,slope*dT_cont + intercept,label="Linear Fit")
 plt.title("dT vs dQ and the linear fit for finding $C_V$")
-plt.xlabel("dT")
-plt.ylabel("dQ")
+plt.xlabel(r"dT $[\epsilon/k]$")
+plt.ylabel(r"dQ $[\epsilon]$")
 plt.legend()
 plt.show()
 
@@ -92,6 +92,9 @@ C_V_diluted = C_Vs[0]
 
 C_P_tp = find_CV("4hTp.txt")[0]
 C_V_tp = C_Vs[-1]
+
+print("Diluted: C_V = {}, C_P = {}".format(C_V_diluted,C_P_diluted))
+print("Triple point: C_V = {}, C_P = {}".format(C_V_tp,C_P_tp))
 
 print("For the diluted density, C_P - C_V = {}".format(C_P_diluted - C_V_diluted))
 print("For the triple point density, C_P - C_V = {}".format(C_P_tp - C_V_tp))
