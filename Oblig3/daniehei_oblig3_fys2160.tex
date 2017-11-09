@@ -349,6 +349,100 @@ and since we have constant pressure, we get
 \left(\pd{Q}{T}\right)_P = C_P = \left(\pd{H}{T}\right)_P
 \end{equation}
 
+\subsection{d)}
+Running the lammps script we get the following data:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{dTdQ.png}
+\caption{$dQ$ versus $dT$ for a Lennard-Jones system with constant volume. A linear fit used to find the slope, which corresponds to the heat capacity $C_V$}
+\label{fig:isoTherm}
+\end{figure}
+
+We know that 
+
+\begin{equation}
+C_V = \left(\pd{Q}{T}\right)_V \Rightarrow dQ = C_VdT
+\end{equation}
+
+So the fitted slope is the $C_V$. So we get the result
+
+\begin{equation}
+C_V = (611.34 \pm 13.38) k
+\end{equation}
+
+
+\subsection{e)}
+For an ideal gas the heat capacity is given as
+
+\begin{equation}
+C_V = \frac{1}{2}NR
+\end{equation}
+Where $R$ is the gas constant, $f$ the degree of freedom and $N$ the number of particles. In LJ-units $R = 1$. All the particles are point particles and therefore have $f = 3$. And there are $N = 540$ particles. We thus get
+
+\begin{equation}
+C_V = 750 k
+\end{equation}
+
+This is a bit above the heat capacity we got. This may both due to an error due to a low number of particles. It may also be due to the Lennard-Jones potential not being a perfect model for an ideal gas.
+
+
+\subsection{f)}
+The density was so kept at $\rho = 0.01$ and the temperature was varied from the triple point temperature to 10 times the critical temperature\footnote{I used $T_{tp} = 0.694$ and $T_c = 1.32$ as these was the one I found at \url{http://www.sklogwiki.org/SklogWiki/index.php/Lennard-Jones_model}} in 6 steps. The resulting heat capacities was calculated for each temperature.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{CVvsT.png}
+\caption{$C_V$ as a function of temperature.}
+\label{fig:isoTherm}
+\end{figure}
+
+We can see that the heat capacity seems to decrease somewhat as temperature increases. A more constant $C_V$ may have been expected\footnote{We already saw that it should be constant at $750$ k}, so the reason for this behaviour is not clear.
+
+\section{g)}
+
+We can now do something similar to what we did above, but we instead let the temperature be constant at $T=2$, and vary the density from a diluted gas density of $\rho = 0.01$ to the triple point density of $\rho = 0.84$ (in practice I ended it at $\rho = 0.8$). We then get
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{CVvsRho.png}
+\caption{$C_V$ as a function of density.}
+\label{fig:isoTherm}
+\end{figure}
+
+Again we see a decrease in $C_V$ as $\rho$ increases. And again I am not sure why this is the case.
+
+\subsection{h)}
+If we now hold the pressure constant we can find $C_P$. This was done with a constant temperature $T=2$ and at a diluted gas density $\rho = 0.01$ and at the triple point density.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c}
+& Diluted Gas & Triple Point\\
+\hline
+$C_V$ & 659.43 & 80.17\\
+$C_P$ & 49.56 & -208.44\\
+$C_P - C_P$ & -609.87 & -288.61
+\end{tabular}
+\caption{$C_V$ and $C_P$ at $T=2$ and for diluted gas and triple point density.}
+\end{table}
+
+We can see that both $C_P$ and $C_V$ have decreased alot from the diluted gas density to the triple point density.
+
+Since we need $\beta_T$ to find the theoretical value of $C_P - C_V$, which I'm not sure who to find from our simulations, since it depends on a constant temperature -- the temperature in the simulation varies. So I have nothing to compare the numerical data with, unfortunately.
+
+\subsection{i)}
+Running the lammps script and fitting for $dQ$ vs $dT$, we get a numerical value for the heat capacity for $N_2$
+
+\begin{equation}
+C_V = 3.188
+\end{equation}
+
+We expect that the units for $C_V$ should be $[Q]/[T]$. In real unit this becomes $(Kcal/mole)/K = Kcal/(mole\cdot K)$. So
+
+\begin{equation}
+C_V = 3.188 \text{ Kcal/mole/K}
+\end{equation}
 
 \end{document}
 
