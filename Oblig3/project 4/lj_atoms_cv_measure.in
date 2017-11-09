@@ -1,0 +1,48 @@
+# Atomify commands start with #/
+#/camera position -15 25 25
+#/camera viewcenter 5 5 5
+# Set atom size and color
+#/atom 1 1.0 #ffffff
+variable T equal 2
+variable rho equal 0.84
+variable P equal 0.01
+# Set Pconst=1 for pressure constant, Pconst=0 for volume constant
+variable Pconst equal 1
+units lj
+dimension 3
+lattice fcc $(v_rho)
+region simbox block 0 5 0 5 0 5
+create_box 1 simbox
+create_atoms 1 box
+mass 1 1.0
+velocity all create $T 87287
+pair_style lj/cut 2.5
+pair_coeff 1 1 1.0 1.0 2.5
+if "${Pconst} == 0" then &
+	"fix nvt all nvt temp $T $T 1" &
+else &
+	"fix npt all npt temp $T $T 1 iso $P $P 1" 
+neigh_modify every 1 delay 0 check yes 
+run 1000
+
+if "${Pconst} == 0" then &
+	"unfix nvt" &
+	"fix nve all nve" &
+else &
+	"unfix npt" &
+	"fix nph all nph iso $P $P 1" 
+variable eFlux equal 1
+fix heat all heat 1 ${eFlux} region simbox
+# Store the time when we started adding energy
+variable currentTime equal $(time)
+run 1000
+compute temp all temp
+# Energy is flux * time
+variable dQ equal v_eFlux*(time-v_currentTime)
+# Temperature was $T when we started adding energy
+variable dT equal c_temp-$T
+# Heat capacity is dQ/dT
+variable heatCapacity equal v_dQ/v_dT
+thermo_style custom step temp v_dQ v_dT v_heatCapacity
+thermo 100
+run 10000
