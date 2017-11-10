@@ -135,7 +135,6 @@ We can so plot the pressure against density:
 \subsection{f)}
 As seen in fig. \ref{fig:press_rho}, for $\hat{T} \geq 1$ does pressure become an injective function of the density. This means that we can find an inverse $\hat{\rho}(\hat{V})$. This will be unique. This means that for $\hat{T} < 1$ there will be no such unique function.\\
 
- (\textbf{Dette virker bare rart, sjekk dette før du leverer!!!!!})
 
 \subsection{g)}
 
@@ -180,9 +179,80 @@ If we plot this for $T = 77,100,110,115,120,125$ K we get
 \end{figure}
 
 \subsection{i)}
+We can find the equal area under these curves for the different temperatures. This was done by hand, then plotted:
 
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{T100.png}
+        \caption{Equal area for $T=100$}
+        \label{fig:gull}
+    \end{subfigure}
+    ~ 
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{T110.png}
+        \caption{Equal area for $T=110$}
+        \label{fig:tiger}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{T115.png}
+        \caption{Equal area for $T=115$}
+        \label{fig:gull}
+    \end{subfigure}
+    ~ 
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{T120.png}
+        \caption{Equal area for $T=120$}
+        \label{fig:tiger}
+    \end{subfigure}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.3]{T125.png}
+\caption{Equal area for $T=125$}
+\label{fig:isoTherm}
+\end{figure}
 
-\subsection{j)}
+From this we can find the liquid phase volume $V_L$ and the gas phase volume $V_g$, and the difference between them:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c|c}
+T & $V_L$ & $V_g$ & $V_g - V_L$\\
+\hline
+100& 0.046 & 0.456 & 0.41\\
+110 & 0.051 & 0.246 & 0.195\\
+115 & 0.055 & 0.195 & 0.14\\
+120 & 0.062 & 0.152 & 0.091\\
+125 & 0.076 & 0.108 & 0.033
+\end{tabular}
+\caption{}
+\end{table}
+
+If we plot $V_g - V_L$ and fit a linear polynomial to it we get
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{VgVL.png}
+\caption{We can see that $V_g - V_L$ vs looks linear, we therefore fit a line to it. }
+\label{fig:isoTherm}
+\end{figure}
+
+The fitted line has the form
+
+\begin{equation}
+V_g - V_L = -0.0148*T + 1.8598
+\end{equation}
+
+We know that the critical temperature is when the gas- and liquid states are indistinguishable, thus when 
+
+\begin{equation}
+V_g - V_L = 0 \Rightarrow T = T_c = \frac{1.8598}{0.0148} = 125.75 \text{K}
+\end{equation}
+
 
 \section{Project 4}
 \subsection{a)}
@@ -427,7 +497,7 @@ $C_P - C_P$ & -609.87 & -288.61
 \caption{$C_V$ and $C_P$ at $T=2$ and for diluted gas and triple point density.}
 \end{table}
 
-We can see that both $C_P$ and $C_V$ have decreased alot from the diluted gas density to the triple point density.
+We can see that both $C_P$ and $C_V$ have decreased alot from the diluted gas density to the triple point density. More important, $C_P$ should not be negative! This seems to be a problem with lammps (for me at least). At the triple point density the simulation goes its own way. Even though I use $T=2$, the simulation insist on using $T=0.92$ in the log file. The log file also gives a negative heat capacity, so it is not my calculation. Why this is, I simply don't know.
 
 Since we need $\beta_T$ to find the theoretical value of $C_P - C_V$, which I'm not sure who to find from our simulations, since it depends on a constant temperature -- the temperature in the simulation varies. So I have nothing to compare the numerical data with, unfortunately.
 

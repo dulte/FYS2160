@@ -2,6 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy import stats
 from scipy.signal import argrelextrema
 
 ##############
@@ -88,60 +89,49 @@ plt.xlabel(r"$V [l/mol]$")
 plt.legend()
 plt.show()
 
+
 ##############
-# Oppgave j) #
+# Oppgave i) #
 ##############
 
-def integrate(P,dV):
-    return np.sum(P)*dV
-
-def find_intersect_arg(P):
-    abs_P = np.abs(P)
-    return argrelextrema(abs_P,np.less)
-
-def find_equal_area(P,V,T,initial_guess,eps=1e-5,iterations=1000,learningRate=0.01,tries=4):
-    dV = V[1]- V[0]
-    y = initial_guess
-    
-    for j in range(tries):
-        for i in range(int(iterations)):
-            arg_min = find_intersect_arg(P(V,T)-y)[0]
-            
-            if len(arg_min) < 3:
-                y -= learningRate
-                continue
-            under = integrate(P(V[arg_min[0]:arg_min[1]+1],T),dV)
-            over = integrate(P(V[arg_min[1]:arg_min[2]+1],T),dV)
-            
-            error = np.sign(over-under)*(over-under)**2
-            y += error*learningRate
-            if abs(error) <= eps:
-                return V[arg_min[0]],V[arg_min[2]]
-        
-        if len(arg_min) == 3:
-            print("Best approximation with current learning rate and iterations")
-            
-            return V[arg_min[0]],V[arg_min[2]]
-        else:
-            learningRate *= 0.1
-            y = initial_guess
-    print("Could not find 3 intersections in {} tries".format(tries))
-    
-V = np.linspace(0.4,40,60000,endpoint=True)*0.089
 T = np.array([100,110,115,120,125])
-init_guess = [25,30,35,40,45]
-temperatures = []
-for t,i in zip(T,init_guess):
-    V_L,V_g = find_equal_area(P_VT,V,t,i,iterations=1e6,learningRate=0.005)
-    print(V_L,V_g,V_g-V_L)
-    temperatures.append(V_g-V_L)
-    
-plt.plot(T,temperatures)
+V = np.linspace(0.4,6,1000,endpoint=True)*0.089
+Y = np.array([11,19,23,27.5,32.53])
 
-plt.title(r"$V_g - V_L$ as temperature goes to $T_c$")
+diff = np.zeros_like(Y)
+
+for i,t in enumerate(T):
+    plt.plot(V,P_VT(V,t),label=r"$T$=%g K" %t)
+    plt.plot(V,np.ones(len(V))*Y[i], label="Seperation of equal area")
+    plt.title(r"Equal Areal for T = %g" %t)
+    plt.ylabel(r"$P [atm]$")
+    plt.xlabel(r"$V [l/mol]$")
+    plt.legend()
+    plt.show()
+    intersections = V[argrelextrema(np.abs(Y[i]-P_VT(V,t)),np.less)]
+    diff[i] = intersections[-1]-intersections[0] 
+    print("For T = {}: V_L = {}, V_g = {}, V_g - V_L = {}".format(t,\
+                  intersections[0],intersections[-1],\
+                  intersections[-1]-intersections[0]))
+
+slope, intercept, r_value, p_value, std_err = stats.linregress(T,diff)
+T_cont = np.linspace(T[0],T[-1],100)
+plt.plot(T,diff,".")
+plt.plot(T_cont, slope*T_cont + intercept)
+plt.title(r"$V_g - V_L$ as teperature increases")
 plt.xlabel("Temperature [K]")
-plt.ylabel("$V_g - V_L$")
+plt.ylabel(r"$V_g - V_L$")
+plt.legend()
 plt.show()
+
+print("V_g - V_L = {}*T + {}".format(slope,intercept))
+
+print("T_c = {}".format(-intercept/slope))
+
+
+
+
+
         
         
         
