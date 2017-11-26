@@ -1,0 +1,355 @@
+\documentclass[a4paper,norsk, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[norsk]{babel}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[dvips]{epsfig}
+\usepackage[toc,page]{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{cite} % [2,3,4] --> [2--4]
+\usepackage{shadow}
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{marvosym }
+\usepackage{subcaption}
+\usepackage[noabbrev]{cleveref}
+\usepackage{cite}
+
+
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\setcounter{tocdepth}{2}
+
+\lstset{language=c++}
+\lstset{alsolanguage=[90]Fortran}
+\lstset{alsolanguage=Python}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{white}}
+\lstset{frame=single}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{red}\bfseries}
+\lstset{commentstyle=\itshape\color{blue}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\title{FYS3140 Oblig1}
+\author{Daniel Heinesen, daniehei}
+\begin{document}
+%\maketitle
+\section{Energy in Thermal Dynamics}
+\begin{table}[H]
+\centering
+\begin{tabular}{c c}
+Exchanged Quantity & Type of Equilibrium\\
+\hline
+energy & thermal\\
+volume & mechanical \\
+particles & diffusive
+\end{tabular}
+\end{table}
+
+\subsection{Ideal Gas}
+Ideal gas law
+\begin{equation}
+PV = nRT = NkT
+\end{equation}
+
+\begin{equation}
+N = nN_A, \qquad R = 8.31 J/mol\cdot K, \qquad N_A = 6.02\cdot10^{23} \qquad k =  R/N_A = 1.381\cdot 10^{-23} J/K
+\end{equation}
+
+\subsubsection{Microscopical Model}
+\begin{equation}
+\bar{P} = \frac{\bar{F}_{\text{x, on piston}}}{A} = \frac{-\bar{F}_{\text{x, on particle}}}{A} = -\frac{m\bar{\left(\frac{\Delta v_x}{\Delta t}\right)}}{A} = \frac{mv_x^2}{V}
+\end{equation}
+\begin{equation}
+\Delta t = 2L/v_x, \qquad \Delta v_x = -2v_x
+\end{equation}
+\begin{equation}
+PV = Nm\bar{v}_x^2 \Rightarrow \overline{\frac{1}{2}mv_x^2} = \frac{1}{2}kT \Rightarrow \overline{K}_{trans} = 3\cdot\frac{1}{2}kT
+\end{equation}
+\begin{equation}
+v_{rms} = \sqrt{\bar{v^2}} = \sqrt{\frac{3kT}{m}}
+\end{equation}
+\subsection{Equipartition Theorem}
+\begin{equation}
+U_{thermal} = N\cdot f\cdot\frac{1}{2}kT
+\end{equation}
+\subsection{Heat and Work}
+\textbf{Temperature}: measure of the tendency of an object to spontaneously give up energy to its surroundings.
+\textbf{Heat}: any spontaneous flow of energy from one object to another, caused by a difference in temperatures.
+\textbf{Work}: any other transfer of energy in or out of the system.
+\begin{equation}
+\Delta U = Q + W
+\end{equation}
+\subsection{Compression Work}
+\begin{equation}
+W = -P\Delta V \text{ (for quasistatic compression)}
+\end{equation}
+With $P(V)$
+\begin{equation}
+W = -\int_{V_i}^{V_f}P(V)dV
+\end{equation}
+\subsubsection{Compression of Ideal Gas}
+\begin{equation}
+W = NkT\ln\frac{V_i}{V_f} \Rightarrow Q = \Delta U - W = \Delta (1/2 NfkT) - W = W = NkT\ln\frac{V_f}{V_i}
+\end{equation}
+For adiabatic compression:
+\begin{equation}
+\Delta U = W \Rightarrow dU = \frac{1}{2}fnkdT = -PdV \Rightarrow \frac{f}{2}\frac{dT}{T} = -\frac{dV}{V}
+\end{equation}
+\begin{equation}
+V_f T_f^{f/2} = V_i T_i^{f/2} = \text{constant}, \qquad VT^{f/2} = \text{constant},\qquad V^\gamma P = \text{constant}
+\end{equation}
+$\gamma = (f+2)/f$ is the adiabatic exponent.
+
+\subsection{Heat Capacity}
+\begin{equation}
+C = \frac{ Q}{\Delta T} \text{ (heat capacity)}, \qquad c = \frac{C}{m} \text{ (specific heat capacity})
+\end{equation}
+\begin{equation}
+C = \frac{ Q}{\Delta T} = C = \frac{\Delta U - W}{\Delta T}
+\end{equation}
+\begin{equation}
+C_V =\left( \frac{\partial U}{\partial T}\right)_V, \qquad C_P = \left(\frac{\Delta U -(-P\Delta V)}{\Delta T}\right)_P = \left( \frac{\partial U}{\partial T}\right)_P + P\left( \frac{\partial V}{\partial T}\right)_P
+\end{equation}
+\subsubsection{For Ideal Gas}
+\begin{equation}
+C_V = \frac{\partial}{\partial T }\frac{NfkT}{2} = \frac{Nfk}{2}, \qquad \left(\frac{\partial V}{\partial T}\right)_P = \frac{\partial}{\partial T }\frac{NkT}{P} = \frac{Nk}{P} \Rightarrow C_P = C_V + Nk = C_V + nR
+\end{equation}
+rule of Dulong And Petit: heat capacity of solid should go towards $3R$
+
+\subsection{Latent Heat}
+For phase transformation
+\begin{equation}
+L = \frac{Q}{m}
+\end{equation}
+To accomplish the transformation.
+\subsection{Enthalpy}
+Total energy one has to come up with to create the system and put it into the environment 
+\begin{equation}
+H = U + PV
+\end{equation}
+\begin{equation}
+\Delta H = \Delta U + P\Delta V = Q +W_{other} \text{ (constant P)}
+\end{equation}
+\begin{equation}
+C_P = \left(\frac{\partial H}{\partial T}\right)_P
+\end{equation}
+
+\subsection{Rates of Processes}
+\subsubsection{Heat Conduction}
+\begin{equation}
+Q \propto \frac{A\Delta T\Delta t}{\Delta x} \Rightarrow \frac{Q}{\Delta t} = -k_t A \frac{dT}{dx}
+\end{equation}
+Fourier heat conduction law
+\subsubsection{Conductivity of Idea Gas}
+\begin{equation}
+\ell \approx \frac{1}{4\pi r^2}\frac{V}{N},\qquad Q = -\frac{1}{2}C_V\ell \frac{dT}{dx}, \qquad k_t = \frac{1}{2}\frac{C_V}{V}\ell \bar{v}
+\end{equation}
+\begin{equation}
+\bar{v}\propto \sqrt{T}
+\end{equation}
+
+\subsubsection{Viscosity}
+\begin{equation}
+F_x \propto \frac{A\cdot (u_{x,top}- u_{x,bottom})}{\Delta z} \Rightarrow \frac{|F_x|}{A} = \eta \frac{du_x}{dz}
+\end{equation}
+
+\subsubsection{Diffusion}
+\begin{equation}
+J_x = -D\frac{dn}{dx}
+\end{equation}
+$J_x$, flux has units number of particles per unit area per unit time.
+
+\section{The Second Law}
+\subsection{Two-State System}
+\begin{equation}
+\text{probability of n heads} = \frac{\Omega(n)}{\Omega(all)}
+\end{equation}
+\begin{equation}
+\Omega(N,n) = \frac{N!}{n!(N-n)!} = \binom{N}{n}
+\end{equation}
+For paramagnet
+\begin{equation}
+\Omega(N_{\uparrow}) = \binom{N}{N_{\uparrow}} = \frac{N!}{N_\uparrow ! N_\downarrow !}
+\end{equation}
+For Einstein Solid
+\begin{equation}
+\Omega(N,q) = \binom{q+N-1}{q}=\frac{(q+N-1)!}{q!(N-1)!}
+\end{equation}
+$N$ is oscillators, $q$ is energy units.
+
+\subsection{Interacting Systems}
+\begin{equation}
+N_A = N_B, \qquad q_{total} = q_A + q_B
+\end{equation}
+\textbf{Fundamental assumption of statistical mechanics}: In an isolated system in thermal equilibrium, all accessible microstates are equally probable.
+
+\subsection{Stirling's Approximation}
+\begin{equation}
+N!\approx N^Ne^{-N}\sqrt{2\pi N},\qquad \ln N! \approx N\ln N - N
+\end{equation}
+
+\subsection{Multiplicity of a Large Einstein Solid}
+\begin{equation}
+\Omega(N,q) \approx \frac{(q+N)!}{q!N!}
+\end{equation}
+\begin{equation}
+\ln\Omega \approx N\ln\frac{q}{N} + N + \frac{N^2}{q}
+\end{equation}
+(Remember to use $\ln(x+1) \approx x$.)
+\begin{equation}
+\Rightarrow \Omega(N,q) \approx e^{N\ln(q/N)}e^N = \left(\frac{eq}{N}\right)^N,\qquad q >>N
+\end{equation}
+\begin{equation}
+\text{width of peak} = \frac{q}{\sqrt{N}}
+\end{equation}
+\subsection{Ideal Gas}
+\begin{equation}
+\Omega_1 \propto V\cdot V_p,\qquad 2mU = p^2_x + p^2_y + p^2_z,\qquad \Delta x \Delta p \approx h 
+\end{equation}
+\begin{equation}
+\Omega_N = \frac{1}{N!}\frac{V^N}{h^{3N}}\cdot A_{hypersphere},\qquad A_{hypersphere} = \frac{2\pi^{d/2}}{(d/2 - 1)!}r^{r-1}
+\end{equation}
+\begin{equation}
+\Omega(U,V,N) = f(N)V^NU^{3N/2}
+\end{equation}
+\subsubsection{Interacting Ideal Gas}
+\begin{equation}
+\Omega_{total} = (f(N))^2(V_AV_B)^2(U_AU_B)^{3N/2}
+\end{equation}
+\begin{equation}
+\text{width of peak} = \frac{U_{total}}{\sqrt{3N/2}}
+\end{equation}
+If can exchange volume:
+\begin{equation}
+\text{width of peak} = \frac{V_{total}}{\sqrt{N}}
+\end{equation}
+
+\subsection{Entropy}
+\begin{equation}
+S = k\ln\Omega
+\end{equation}
+\subsection{Entropy of Ideal Gas}
+Monatomic ideal gas, Sackur-Tetrode eq:
+\begin{equation}
+S = Nk\left[\ln\left(\frac{V}{N}\left(\frac{4\pi mU}{3Nh^2}\right)^{3/2}\right) + \frac{5}{2}\right]
+\end{equation}
+For $U$, $N$ fixed:
+\begin{equation}
+\Delta S = Nk\ln\frac{V_f}{V_i}
+\end{equation}
+\section{Interactions and Implications}
+\begin{equation}
+\frac{\partial S_A}{\partial U_A} = \frac{\partial S_B}{\partial U_B}
+\end{equation}
+at equilibrium.
+\begin{equation}
+\frac{1}{T}\equiv \left(\frac{\partial S}{\partial U}\right)_{N,V}
+\end{equation}
+\subsection{Entropy and Heat}
+\subsubsection{Predicting Heat capacity}
+\begin{equation}
+C_V = \left(\frac{\partial U}{\partial T}\right)_{N,V}
+\end{equation}
+Algorithm:
+\begin{itemize}
+\item Use QM and some combinations to find an expression for $\Omega$, in terms of $U$, $V$ and $N$, and any other relevant variables
+\item Take to logarithm to find $S$
+\item Differentiate $S$ with respect to $U$ and the the reciprocal to find the temperature $T$ as a function of $U$ and other variables.
+\end{itemize}
+
+\subsubsection{Measuring Entropies}
+For constant(or quatistatic) volume and no work
+\begin{equation}
+dS = \frac{dU}{T} = \frac{Q}{T}
+\end{equation}
+More general
+\begin{equation}
+dS = \frac{C_V dT}{T},\qquad \Delta S = \int_{T_i}^{T_f}\frac{C_V}{T}dT,\qquad S - S(0) = \int_{T_i}^{0}\frac{C_V}{T}dT
+\end{equation}
+\textbf{Third law}: $T\rightarrow 0 \Rightarrow S\rightarrow0$
+\subsection{Paramagnetism}
+\begin{equation}
+U = \mu B(N_\downarrow - N_\uparrow) = \mu B (N- 2N_\uparrow),\qquad M = \mu(N_\uparrow - N_\downarrow) = -\frac{U}{B}
+\end{equation}
+\subsubsection{Analytic Solution}
+\begin{equation}
+S/k \approx N\ln N - N_\uparrow \ln N_\uparrow - (N-N_\uparrow)\ln(N-N_\uparrow)
+\end{equation}
+\begin{equation}
+\frac{1}{T} = \frac{k}{2\mu B}\ln\left(\frac{N- U/\mu B}{N+ U/\mu B}\right)
+\end{equation}
+\begin{equation}
+U = N\mu B\left(\frac{1-e^{2\mu B/kT}}{1+e^{2\mu B/kT}}\right) = -N\mu B\tanh\frac{\mu B}{kT},\qquad M = N\mu \tanh\frac{\mu B}{kT}
+\end{equation}
+\begin{equation}
+C_B = \left(\frac{\partial U}{\partial T}\right)_{N,B} = Nk \frac{(\mu B/kT)^2}{\cosh^2(\mu B/kT	)}
+\end{equation}
+Bohr magnetron
+\begin{equation}
+\mu_B = \frac{eh}{4\pi m_e} = 9.274\cdot10^{-24} J/T = 5.788\cdot10^{-5}eV/T
+\end{equation}
+For $\mu B/kT << 1$
+\begin{equation}
+M\approx \frac{N\mu^2B}{kT} \Rightarrow M \propto 1/T
+\end{equation}
+Curie's law.
+\subsection{Summery}
+Thermodynamic identity
+\begin{equation}
+dU = TdS - PdV + \mu dN
+\end{equation}
+$VNP:$
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c}
+Type of interaction & Exchange quantity & Governing variable & Constant & Formula\\
+\hline
+thermal & energy & temperature & V,N & $\frac{1}{T} = \left(\frac{\partial S}{\partial U}\right)_{V,N}$\\
+mechanical & volume & pressure & U,N & $\frac{P}{T} = \left(\frac{\partial S}{\partial V}\right)_{U,N}$\\
+diffusive & particles & chemical potential & U,V & $\frac{\mu}{T} = -\left(\frac{\partial S}{\partial N}\right)_{U,V}$
+\end{tabular}
+\end{table}
+\section{Engines and Refrigerators}
+\subsection{Heat Engines}
+efficiency
+\begin{equation}
+e \equiv \frac{\text{benefit}}{\text{cost}} = \frac{W}{Q_h}
+\end{equation}
+$Q_h$ is heat from the hot reservoir with temperature $T_h$, and $Q_c$ from the cold reservoir with temperature $T_c$.
+\begin{equation}
+Q_h = Q_c + W, \qquad e = 1 - \frac{Q_c}{Q_h}
+\end{equation}
+From second law
+\begin{equation}
+S_c \geq S_h \Rightarrow \frac{Q_c}{T_c} \geq \frac{Q_h}{T_h} \Rightarrow \frac{Q_c}{Q_h} \geq \frac{T_c}{T_h}
+\label{eq:heatSecond}
+\end{equation}
+\begin{equation}
+ \Rightarrow e \leq 1 - \frac{T_c}{T_h}
+\end{equation}
+\subsection{Refrigerators}
+coefficient of preference:
+\begin{equation}
+COP \equiv \frac{\text{benefit}}{\text{cost}} = \frac{Q_c}{W}
+\end{equation}
+From first law $Q_h = Q_c + W$ we get
+\begin{equation}
+COP = \frac{Q_c}{Q_h - Q_c} = \frac{1}{Q_h/Q_c - 1}
+\end{equation}
+From second law \eqref{eq:heatSecond} we get
+\begin{equation}
+COP \leq \frac{1}{T_h/T_c - 1} = \frac{T_c}{T_h - T_c}
+\end{equation}
+
+\end{document}
+
