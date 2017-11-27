@@ -21,6 +21,7 @@
 \usepackage[noabbrev]{cleveref}
 \usepackage{cite}
 
+\newcommand{\pd}[3]{\left(\frac{\partial #1}{\partial #2}\right)_{#3}}
 
 \setlength{\droptitle}{-10em}   % This is your set screw
 
@@ -350,6 +351,134 @@ From second law \eqref{eq:heatSecond} we get
 \begin{equation}
 COP \leq \frac{1}{T_h/T_c - 1} = \frac{T_c}{T_h - T_c}
 \end{equation}
+
+\section{Free Energy and Chemical Thermodynamics}
+\subsection{Free Energy as Available Work}
+Helmholtz Free Energy: Total energy needed to create the system, minus the heat you can get from the environment for free at temperature $T$. For constant $T$:
+\begin{equation}
+F = U - TS, \qquad \Delta F = \Delta U - T\Delta S = Q + W - T\Delta S
+\end{equation}
+For constant $P$ and $T$, the work of a system is Gibbs Free Energy
+\begin{equation}
+G = H - TS = U - TS + PV, \qquad \Delta G = \Delta U - T\Delta S + P\Delta V = Q+W -T\Delta S + P\Delta V
+\end{equation}
+\textbf{INSERT PIC ON s151}
+
+\subsection{Thermodynamic Identities}
+\begin{equation}
+dU = TdS - PdV + \mu dN
+\end{equation}
+\begin{equation}
+dH = dU + PdV + VdP = TdS + VdP + \mu dN
+\end{equation}
+\begin{equation}
+dF = dU - TdS - SdT = - SdT - PdV + \mu dN
+\end{equation}
+\begin{equation}
+S = -\pd{F}{T}{V,N}, \qquad P = -\pd{F}{V}{T,N},\qquad \mu = \pd{F}{N}{T,V}
+\end{equation}
+\begin{equation}
+dG = - SdT + VdP + \mu dN
+\end{equation}
+\begin{equation}
+S = -\pd{G}{T}{P,N}, \qquad V = -\pd{G}{P}{T,N},\qquad \mu = \pd{G}{N}{T,P}
+\end{equation}
+\subsection{ Free Energy as a Force towards Equilibrium}
+\begin{equation}
+dS_{total} = dS + dS_R, \qquad dS = \frac{1}{T}dU  + \frac{P}{T}dV - \frac{\mu}{T}dN
+\end{equation}
+$dS_R = dU_T/T_R$
+\begin{equation}
+dS_{total} = dS + \frac{1}{T_R}dU_R
+\end{equation}
+$dU_R = - dU$
+\begin{equation}
+dS_{total} = dS - \frac{1}{T}dU = -\frac{1}{T}(dU - TdS) =-\frac{1}{T}dF
+\end{equation}
+This is for constant $T$, $V$ and $N$. For constant $P$
+\begin{equation}
+dS_{total}=-\frac{1}{T}dG
+\end{equation}
+\subsection{Extensive and Intensive Quantities}
+Double the amount of stuff: Quantities that doubles are extrinsic; those who do not are intensive. \textbf{Extensive}: V, N, S, U, H, F, G, mass. \textbf{Intensive}: T, P, $\mu$, density. Extensive$\times$intensive = extensive. Extensive$\times$extensive = neither. Type$\times$same type = same type. Extensive $+$ intensive is not allowed.
+\subsection{Gibbs Free Energy and Chemical Potential}
+Given constant $T$ and $P$ we have that
+\begin{equation}
+\mu = \pd{G}{N}{T,P} \Rightarrow G = N\mu \text{ or } G = \sum_i N_i \mu_i
+\end{equation}
+\begin{equation}
+\Rightarrow\frac{\partial \mu}{\partial P} = \frac{\partial}{\partial P}\frac{G}{N} = \frac{V}{N} = \frac{kT}{P}
+\end{equation}
+Integrating
+\begin{equation}
+\mu(T,P) = \mu^\circ(T,P) + kT \ln\frac{P}{P^\circ}
+\end{equation}
+$P^\circ$ is the atmospheric pressure, and $\mu^\circ$ is $\mu$ at this pressure and can be found in tables for for atmospheric pressures ($\mu = G/N$).  For a mixture $P$ is the partial pressure of that gas.
+
+\subsection{Phase Transformations of Pure Substances}
+\textbf{Vapor pressure}: Pressure at which a gas can coexist with its solid or liquid phase. \textbf{Triple point}: Point where all three phases can coexist. \textbf{Critical Point}: No longer a discontinuous change from liquid to gas. \textbf{Curie Temperature}: Temperature where magnetization disappears, so the phase boundary ends at a critical temperature.
+
+\subsection{Diamonds and Graphite}
+\textbf{At a given temperature and pressure, the stable phase is always the one with the lower Gibbs free energy}
+
+To find the most stable state, use:
+\begin{equation}
+\pd{G}{V}{T,N} = V, \qquad \pd{G}{T}{P,N} = -S
+\end{equation}
+Since graphite has more volume and entropy its Gibbs free energy increases more with pressure and decreases more with temperature. Thus raising the pressure makes diamonds more stable, and with higher temperature higher pressure is needed.
+\subsection{Clausius-Clapeyron Relation}
+\begin{equation}
+G_l = G_g
+\end{equation}
+at phase boundary. $dG_l = dG_g$ to remain at phase boundary. Thus
+\begin{equation}
+-S_ldT + V_ldP = -S_gdT + V_gdP
+\end{equation}
+\begin{equation}
+\Rightarrow \frac{dP}{dT} = \frac{S_g - S_l}{V_g - V_l} = \frac{L}{T\Delta V}
+\end{equation}
+using the (total) latent heat $S_g - S_l = L/T$ and $V_g - V_l = \Delta V$. This is the Clausius-Clapeyron Relation.
+
+\subsection{The van der Waals Model}
+\begin{equation}
+\left( P + \frac{aN^2}{V^2}\right)(V-Nb) = NkT
+\end{equation}
+\begin{equation}
+\text{total potential pressure} = -\frac{aN^2}{V} \Rightarrow P_{\text{due to p.e.}} = -\frac{d}{dV}\left(-\frac{aN^2}{V}\right) = -\frac{aN^2}{V^2}
+\end{equation}
+attractive force: $NkT/(V-Nb)$:
+\begin{equation}
+P = \frac{NkT}{V - Nb} -\frac{aN^2}{V^2}
+\end{equation}
+\begin{equation}
+G = -NkT\ln(V-Nb) + \frac{(NkT)(Nb)}{V-Nb}- \frac{2aN^2}{V} + c(T)
+\end{equation}
+\begin{equation}
+0 = \int_{loop} dG = \int_{loop}\pd{G}{P}{T} dP = \int_{loop} V dP 
+\end{equation}
+\begin{equation}
+V_c = 3Nb,\qquad P_c = \frac{1}{27}\frac{a}{b^2}, \qquad kT_c = \frac{8}{27}\frac{a}{b}
+\end{equation}
+\subsection{Chemical Equilibrium}
+\begin{equation}
+0 = dG = \sum_i \mu_i dN_i
+\end{equation}
+\textbf{Le Chatelier's Principle}: When you disturb a system in equilibrium,it will respond in a way that partially offsets the disturbance.
+\subsection{Ionization of Hydrogen}
+\begin{equation}
+H \leftrightarrow p + e
+\end{equation}
+Saha equation:
+\begin{equation}
+\frac{P_p}{P_H} = \frac{kT}{P_e}\left(\frac{2\pi m_e kT}{h^2}\right)^{3/2}e^{-I/kT}
+\end{equation}
+
+
+
+
+
+
+
 
 \end{document}
 
