@@ -237,7 +237,7 @@ If can exchange volume:
 
 \subsection{Entropy}
 \begin{equation}
-S = k\ln\Omega
+S = k\ln\Omega. \qquad \Omega = e^{S/k}
 \end{equation}
 \subsection{Entropy of Ideal Gas}
 Monatomic ideal gas, Sackur-Tetrode eq:
@@ -573,8 +573,183 @@ F = -kT\ln Z = -NkT(\ln V - \ln N - \ln v_Q + 1) + F_{int}
 \begin{equation}
 S = Nk\left[\ln \left(\frac{V}{Nv_Q}\right) + \frac{5}{2}\right] - \frac{\partial F_{int}}{\partial T}, \qquad P = \frac{NkT}{V},\qquad \mu = -kT\ln \frac{V Z_{int}}{Nv_Q}
 \end{equation}
+\section{Quantum Statistics}
+\subsection{Gibbs Factor}
+For a system i thermal and diffusive contact with a much larger reservoir, whose temperature and chemical potential are effectively constant.
+\begin{equation}
+\text{Gibbs Factor} = e^{-(E(s) - \mu N(s))/kT}
+\end{equation}
+\begin{equation}
+\mathcal{P}(s) = \frac{1}{\mathcal{Z}}e^{-(E(s) - \mu N(s))/kT}, \qquad \mathcal{Z} = \sum_s e^{-(E(s) - \mu N(s))/kT}
+\end{equation}
+$\mathcal{Z}$ is the grand partition function.
+\subsection{Bosons and Fermions}
+\subsubsection{Fermions:  Fermi-Dirac distribution}
+On states allowed are $0$ and $1$
+\begin{equation}
+\mathcal{Z} = 1 + e^{-(\epsilon - \mu)/kT} \Rightarrow \bar{n} = \sum_n n \mathcal{P}(n) = 0\cdot\mathcal{P}(0) + 1\cdot\mathcal{P}(1) = \frac{1}{1 + e^{(\epsilon - \mu)/kT}}
+\end{equation}
+\subsubsection{Bosons: Einstein-Bose distribution}
+All states allowed
+\begin{equation}
+\mathcal{Z} = 1 + e^{-(\epsilon - \mu)/kT} + e^{-2(\epsilon - \mu)/kT}\ldots = 1 + e^{-(\epsilon - \mu)/kT} + \left( e^{-(\epsilon - \mu)/kT}\right)^2\ldots =\frac{1}{1 - e^{-(\epsilon - \mu)/kT}}
+\end{equation}
 
+\begin{equation}
+\bar{n} = \sum_n n \mathcal{P}(n) = -\frac{1}{\mathcal{Z}}\frac{\partial \mathcal{Z}}{\partial x} = \frac{1}{1-e^{(\epsilon - \mu)/kT}}
+\end{equation}
+Where $x = (\epsilon - \mu)/kT$. For reference: for the Boltzmann distribution
+\begin{equation}
+\bar{n}_{boltzmann} = N\mathcal{P}(s) = \frac{N}{Z_1}e^{-\epsilon/kT} = e^{-(\epsilon-\mu)/kT}
+\end{equation}
+Using $\mu = -kT\ln (Z_1/N)$
+\subsection{Degenerated Gas}
+For Boltzmann statistics to apply $V/N>> v_Q$.
+\subsubsection{Zero Temperature}
+\begin{equation}
+\epsilon_F = \mu(T = 0)
+\end{equation}
+Particle in box:
+\begin{equation}
+\epsilon = \frac{|\vec{p}|^2}{2m} = \frac{h^2}{8mL^2}(n^2_x + n^2_y + n^2_z)
+\end{equation}
+\begin{equation}
+\epsilon_F = \frac{h^2n_{max}^2}{8mL^2}
+\end{equation}
+\begin{equation}
+N = 2\times \text{(volume of eighth-sphere)} = 2\frac{1}{8}\cdot\frac{4}{3}\pi n_{max}^3 = \frac{\pi n_{max}^3}{3}
+\end{equation}
+With $V=L^3$
+\begin{equation}
+\epsilon_F = \frac{h^2}{8m}\left(\frac{3N}{\pi V}\right)^{2/3}
+\end{equation}
+\begin{equation}
+U = 2\int \int \int \epsilon(\vec{n})dn_x dn_y dn_z = 2\int_0^{n_{max}}dn\int_0^{\pi/2}d\theta\int_0^{\pi/2}d\phi n^2\sin\theta \epsilon(n) = \frac{3}{5}N\epsilon_F
+\end{equation}
+\begin{equation}
+T_F = \frac{\epsilon_F}{k}, \qquad P = \frac{2N\epsilon_F}{5V} = \frac{2U}{3V}
+\end{equation}
+Degeneracy pressure. Bulk modulus
+\begin{equation}
+B = -V\pd{P}{V}{T} = \frac{10U}{9V}
+\end{equation}
+\subsubsection{Low Temperature}
+\begin{equation}
+U = \frac{3}{5}N\epsilon_F + \frac{\pi^2}{4}N\frac{(kT)^2}{\epsilon_F}, \qquad C_V = \frac{\pi^2 Nk^2T}{2\epsilon_F}
+\end{equation}
+\subsubsection{Density of States}
+\begin{equation}
+\epsilon = \frac{h^2}{8mL^2}n^2 \Rightarrow n = \sqrt{\frac{8mL^2}{h^2}}\sqrt{\epsilon} \Rightarrow dn = \sqrt{\frac{8mL^2}{h^2}} \frac{1}{2\sqrt{\epsilon}}d\epsilon
+\end{equation}
+\begin{equation}
+U = \int_0^{\epsilon_F}\epsilon\left[\frac{\pi}{2}\left(\frac{8mL^2}{h^2}\right)^{3/2}\sqrt{\epsilon}\right] d\epsilon
+\end{equation}
+at $T=0$
+\begin{equation}
+g(\epsilon) = \frac{\pi}{2}\frac{(8m)^{3/2}}{h^3}V\sqrt{\epsilon} = \frac{3N}{2\epsilon_F^{3/2}}\sqrt{\epsilon}
+\end{equation}
+For $T=0$ we then get
+\begin{equation}
+N = \int_0^{\epsilon_F}g(\epsilon) d\epsilon
+\end{equation}
+and for any $T$ we get
+\begin{equation}
+N = \int_0^{\epsilon_F}g(\epsilon) \bar{n}_{FD}(\epsilon) d\epsilon \int_0^{\epsilon_F}g(\epsilon)\frac{1}{1 + e^{(\epsilon - \mu)/kT}} d\epsilon
+\end{equation}
+\begin{equation}
+U = \int_0^{\epsilon_F}\epsilon g(\epsilon) \bar{n}_{FD}(\epsilon) d\epsilon \int_0^{\epsilon_F}\epsilon g(\epsilon)\frac{1}{1 + e^{(\epsilon - \mu)/kT}} d\epsilon
+\end{equation}
+and for $T\neq 0 \Rightarrow \mu(T) \neq \epsilon_F$
+\subsubsection{Sommerfeld Expansion}
+\begin{equation}
+\frac{\mu }{\epsilon_F} = 1 - \frac{\pi^2}{12}\left(\frac{kT}{\epsilon_F}\right)^2 + \ldots
+\end{equation}
+\begin{equation}
+U = \frac{3}{5}N\epsilon_F + \frac{\pi^2}{4}N\frac{(kT)^2}{\epsilon_F} + \ldots
+\end{equation}
+\subsection{Blackbody radiation}
+Ultraviolet catastrophe: theoretically one expected infinite wavelengths with $E = 2\cdot 1/2 kT$, but this was not the case experimentally.
 
+\subsubsection{Planck Distribution}
+\begin{equation}
+E_n = 0,hf,2hf,\ldots \Rightarrow Z = 1 + e^{-\beta ht} + e^{-2\beta hf}+ \ldots = \frac{1}{1-e^{-\beta hf}}
+\end{equation}
+\begin{equation}
+\bar{E} = - \frac{1}{Z}\frac{\partial Z}{\partial \beta} = \frac{hf}{e^{hf/kT} - 1}, \qquad \bar{n}_{Pl} = \frac{1}{e^{hf/kT} - 1}
+\end{equation}
+\subsubsection{Photons}
+Use the Einstein-Bose distribution. And:
+\begin{equation}
+\mu = 0
+\end{equation}
+since
+\begin{equation}
+\pd{F}{N}{T,V} = 0
+\end{equation}
+at equilibrium. This i s because the number of photons $N$ is not constrained but takes what ever value minimizes $F$. So a small $dN$ should leave $F$ untouched.
+\subsubsection{Summing over Modes}
+\begin{equation}
+\lambda = \frac{2L}{n}, \qquad p = \frac{hn}{2L},\Rightarrow e\epsilon = pc = \frac{hcn}{2L}
+\end{equation}
+\begin{equation}
+U = 2\int_0^{\infty}dn\int_0^{\pi/2}d\theta\int_0^{\pi/2}d\phi n^2\sin\theta \frac{hcn}{2L}\frac{1}{e^{hcn/2LkT}-1}
+\end{equation}
+\subsubsection{Planck Spectrum}
+changing variables to $\epsilon = hcn/2L$
+\begin{equation}
+\frac{U}{V} = \int_0^\infty \frac{8\pi\epsilon^3/(hc)^3}{e^{\epsilon/kT}-1} d\epsilon
+\end{equation}
+The energy density per unit photon energy or the spectrum is
+\begin{equation}
+u(\epsilon) = \frac{8\pi}{(hc)^3}\frac{\epsilon^3}{e^{\epsilon/kT}-1}
+\end{equation}
+with $x = \epsilon/kT$
+\begin{equation}
+\frac{U}{V} = \frac{8\pi(kT)^4}{(hc)^3}\int_0^\infty\frac{x^3}{e^x - 1} dx
+\end{equation}
+\subsubsection{Total Energy}
+\begin{equation}
+\frac{U}{V} = \frac{8\pi^5(kT)^4}{15(hc)^3}
+\end{equation}
+\subsubsection{Entropy of Photon Gas}
+\begin{equation}
+C_V = \pd{U}{T}{V} = 4aT^3
+\end{equation}
+$a = 8\pi^5k^4V/15(hc)^3$
+\begin{equation}
+S(T) = \int_0^T\frac{C_V(T)}{T}dT = \frac{4}{3}aT^3
+\end{equation}
+\subsubsection{Photons Escaping Though a Hole}
+Stefan-Boltzmann constant $\sigma$. Stefan's Law:
+\begin{equation}
+\text{power per unit area} = \frac{2\pi^5}{15}\frac{(kT)^4}{h^3c^2} = \sigma T^4
+\end{equation}
+\subsubsection{Radiation from Other Object}
+\textbf{Emissivity} $e$:
+\begin{equation}
+\text{power} = \sigma e A T^4
+\end{equation}
+\subsubsection{Sun and Earth}
+Luminosity: Sun $3.9\cdot 10^{6}$ watts.
+\begin{equation}
+T = \left(\frac{\text{luminosity}}{\sigma A}\right)^{1/4} = 5800 K \Rightarrow\epsilon = 2.82kT = 1.41 eV
+\end{equation}
+\begin{equation}
+\epsilon = 2.82kT
+\end{equation}
+\begin{equation}
+(\text{solar constant}) \cdot \pi R^4 = 4\pi R^2 \sigma T^4 \Rightarrow T_{earth} = 279 K
+\end{equation}
+Real: $288$ K
+
+\section{Div:}
+\subsection{Maxwell's relations}
+\begin{equation}
+\pd{T}{V}{S} = -\pd{P}{S}{V}, \qquad \pd{T}{P}{S} = \pd{V}{S}{P}
+\end{equation}
+\begin{equation}
+\pd{S}{V}{T} = \pd{P}{T}{V}, \qquad -\pd{S}{P}{T} = \pd{V}{T}{P}
+\end{equation}
 
 \end{document}
 
