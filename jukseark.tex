@@ -473,10 +473,106 @@ Saha equation:
 \frac{P_p}{P_H} = \frac{kT}{P_e}\left(\frac{2\pi m_e kT}{h^2}\right)^{3/2}e^{-I/kT}
 \end{equation}
 
+\section{Boltzmann Statistics}
+\begin{equation}
+\text{Boltzmann factor} = e^{-E(s)/kT}
+\end{equation}
+\begin{equation}
+\mathcal{P}(s) = \frac{1}{Z}e^{-E(s)/kT},\qquad Z = \sum_s e^{-E(s)/kT}
+\end{equation}
+\begin{equation}
+\bar{E} = \frac{1}{N}\sum_s E(s)N(s) = \sum_s E(s) \mathcal{P}(s) = \frac{1}{Z}\sum_s E(s) e^{-\beta E(s)}
+\end{equation}
+with $\beta = 1/kT$
+\begin{equation}
+\bar{E} = -\frac{1}{Z}\frac{\partial Z}{\partial \beta} = -\frac{\partial}{\partial \beta}\ln Z, \qquad U = N\bar{W}
+\end{equation}
+\subsection{Rotation of Diatomic Molecules}
+\begin{equation}
+E(j) = j(j+1)\epsilon, \qquad Z_{rot} = \sum_{j=0}^{\infty}(2j+1)e^{-E(j)/kT} = \sum_{j=0}^{\infty}(2j+1)e^{-j(j+1)\epsilon/kT}
+\end{equation}
+$(2j+1)$ being the degeneration.
+\begin{equation}
+Z_{rot} \approx \int_{0}^{\infty}(2j+1)e^{-j(j+1)\epsilon/kT} dj = \frac{kT}{\epsilon}
+\end{equation}
+and $kT/2\epsilon$ for identical atoms ($N_2$, $O_2$ etc).
+\subsection{Equipartition Theorem}
+Holds for systems where the energy is in the form of quadratic degrees of freedom $E(q) = cq^2$, where c is a constant and $q$ is some variable (coordinate, momentum, etc).
+\begin{equation}
+Z = \sum_q e^{-\beta E(q)} = \sum_q e^{-\beta cq^2} = \frac{1}{\Delta q}\sum_q e^{-\beta cq^2} \Delta q 
+\end{equation}
+\begin{equation}
+\Rightarrow \frac{1}{\Delta q}\int_{-\infty}^\infty e^{-\beta cq^2} d q =\frac{1}{\Delta q}\frac{1}{\sqrt{\beta c}}\int_{-\infty}^\infty e^{-x^2} d x = C\beta ^{-1/2}
+\end{equation}
+\begin{equation}
+\Rightarrow \bar{E} = -\frac{1}{Z}\frac{\partial Z}{\partial \beta} = \frac{1}{2}kT
+\end{equation}
+Lennard-Jones:
+\begin{equation}
+u(x) = u_0\left[\left(\frac{x_0}{x}\right)^{12} - 2\left(\frac{x_0}{x}\right)^{6}\right]
+\end{equation}
+\subsection{Maxwell Speed Distribution}
+\begin{equation}
+v_{rms} = \sqrt{\frac{2kT}{m}}
+\end{equation}
+\begin{equation}
+\mathcal{D}(v) = \left(\frac{m}{2\pi kT}\right)^{3/2}4\pi v^2 e^{-mv^2/2kT},\qquad v_{max} = \sqrt{\frac{2kT}{m}}
+\end{equation}
+\begin{equation}
+\bar{v} = \sum_{\text{all v}} v \mathcal{D}(v)dv = \sqrt{\frac{8kT}{\pi m}}
+\end{equation}
+By turning this to an integral. This is a distribution to to get probability$(v>x)$ just integrate this from $x$ to $\infty$.
+\subsection{Partition Functions and Free Energy}
+\begin{equation}
+F = -kT\ln Z,\qquad Z = e^{-F/kT}
+\end{equation}
+\begin{equation}
+S = -k\sum_s\mathcal{P}(s) \ln \mathcal{P}(s)
+\end{equation}
+\subsection{Partition Functions for Composite Systems}
+For noninteracting, distinguishable particles
+\begin{equation}
+Z_{total} = Z_1Z_2\ldots Z_N
+\end{equation}
+For noninteracting, indistinguishable particles
+\begin{equation}
+Z_{total} =\frac{1}{N!} Z_1^N
+\end{equation}
 
-
-
-
+\subsection{Ideal Gas Revisited}
+\begin{equation}
+Z =\frac{1}{N!} Z_1^N, \qquad Z_1 = Z_{tr}Z_{int}
+\end{equation}
+Where $E_{tr}$ is the transitional kinetic energy and $E_{int}$ is the internal energy (rotational, vibrational. etc). Particle in box:
+\begin{equation}
+\lambda_n = \frac{2L}{n}, \qquad p_n = \frac{h}{\lambda_n},\qquad E_n = \frac{p_n^2}{2m} = \frac{h^2n^2}{8mL^2}
+\end{equation}
+\begin{equation}
+Z_{1D} = \sum_ne^{-E_n/kT} = \sum_n e^{-h^2n^2/8mL^2kT}
+\end{equation}
+Doing this as an integration we get
+\begin{equation}
+Z_{1D} = \sqrt{\frac{2\pi mk T}{h^2}}L = \frac{L}{\ell_Q} \Rightarrow \ell_Q = \frac{h}{\sqrt{\pi mkT}} 
+\end{equation}
+Quantum length.
+\begin{equation}
+Z_{tr} = \frac{L_x}{\ell_Q}\frac{L_y}{\ell_Q}\frac{L_z}{\ell_Q} = \frac{V}{v_Q}
+\end{equation}
+\begin{equation}
+\Rightarrow Z_1 = \frac{V}{v_Q}Z_{int}\Rightarrow Z = \frac{1}{N!}\left(\frac{VZ_{int}}{v_Q}\right)^N,\qquad \ln Z = N( \ln V + \ln Z_{int} - \ln N - \ln v_Q + 1)
+\end{equation}
+\begin{equation}
+U = \frac{\partial}{\partial \beta} Z =  U_{int} + \frac{3}{2}NkT 
+\end{equation}
+\begin{equation}
+C_V = \frac{\partial U}{\partial T} = \frac{\partial U_{int}}{\partial T} + \frac{3}{2}Nk
+\end{equation}
+\begin{equation}
+F = -kT\ln Z = -NkT(\ln V - \ln N - \ln v_Q + 1) + F_{int}
+\end{equation}
+\begin{equation}
+S = Nk\left[\ln \left(\frac{V}{Nv_Q}\right) + \frac{5}{2}\right] - \frac{\partial F_{int}}{\partial T}, \qquad P = \frac{NkT}{V},\qquad \mu = -kT\ln \frac{V Z_{int}}{Nv_Q}
+\end{equation}
 
 
 
