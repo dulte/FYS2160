@@ -21,6 +21,8 @@
 \usepackage[noabbrev]{cleveref}
 \usepackage{cite}
 
+\usepackage[margin=0.1in]{geometry}
+
 \newcommand{\pd}[3]{\left(\frac{\partial #1}{\partial #2}\right)_{#3}}
 
 \setlength{\droptitle}{-10em}   % This is your set screw
@@ -90,6 +92,11 @@ U_{thermal} = N\cdot f\cdot\frac{1}{2}kT
 \begin{equation}
 \Delta U = Q + W
 \end{equation}
+\subsection{Work on a Surface}
+\begin{equation}
+W = \sigma dA
+\end{equation}
+$\sigma$ being the surface tension.
 \subsection{Compression Work}
 \begin{equation}
 W = -P\Delta V \text{ (for quasistatic compression)}
@@ -109,7 +116,9 @@ For adiabatic compression:
 \begin{equation}
 V_f T_f^{f/2} = V_i T_i^{f/2} = \text{constant}, \qquad VT^{f/2} = \text{constant},\qquad V^\gamma P = \text{constant}
 \end{equation}
-$\gamma = (f+2)/f$ is the adiabatic exponent.
+$\gamma = (f+2)/f$ is the adiabatic exponent. 
+
+Adiabatic = constant entropy! Find the tilstandslikning for the pressure. Insert this into to entropy and find values for $f(p,A) = $constant, which makes the entropy constant. This $f(p,A) = $constant is the adiabatic equation
 
 \subsection{Heat Capacity}
 \begin{equation}
@@ -182,11 +191,14 @@ For paramagnet
 \begin{equation}
 \Omega(N_{\uparrow}) = \binom{N}{N_{\uparrow}} = \frac{N!}{N_\uparrow ! N_\downarrow !}
 \end{equation}
-For Einstein Solid
+For Einstein Solid:
 \begin{equation}
 \Omega(N,q) = \binom{q+N-1}{q}=\frac{(q+N-1)!}{q!(N-1)!}
 \end{equation}
 $N$ is oscillators, $q$ is energy units.
+\begin{equation}
+q = 0, hf, 2hf, \ldots
+\end{equation}
 
 \subsection{Interacting Systems}
 \begin{equation}
@@ -198,6 +210,55 @@ N_A = N_B, \qquad q_{total} = q_A + q_B
 \begin{equation}
 N!\approx N^Ne^{-N}\sqrt{2\pi N},\qquad \ln N! \approx N\ln N - N
 \end{equation}
+\subsection{Einstein Crystals}
+\begin{equation}
+\Omega(N,q)={q+N-1\choose q}=\frac{(q+N-1)!}{q!(N-1)!}\approx \left(\frac{eq}{N}\right)^N\ \leftarrow \mathrm{when\ q>>N} \approx \frac{\left(\frac{q+N}{q}\right)^q\left(\frac{q+N}{N}\right)^N}{\sqrt{2\pi q(q+N)/N}} \leftarrow\ \mathrm{when\ q,N\ large}
+\end{equation}
+\begin{equation}
+S=k\ln (eq/N)^N=Nk[\ln(q/N)+1]=Nk\ln U-Nk\ln(\epsilon N)+Nk
+\end{equation}
+Assuming that $U=\epsilon q$. Differentiate $S$ to find $U=NkT$. Gives $C_V=Nk$. Also get:
+\begin{equation}
+\mu = -kT\ln \left(\frac{N+q}{N}\right)
+\end{equation}
+\subsection{Interacting Systems}
+Fundamental assumption of statistical mechanics (ergodic hypothesis): "\textit{In an isolated system in thermal equilibrium, all accessible microstates are equally probable}".
+\subsection{Large Systems}
+Sharpness of multiplicity function: For a (large) Einstein crystal:
+\begin{equation}
+\Omega = \left(\frac{eq_A}{N}\right)^N\left(\frac{eq_B}{N}\right)^N = \left(\frac{e}{N}\right)^{2N}(q_Aq_B)^N \quad \Omega_{max}=\left(\frac{e}{N}\right)^{2N}\left(\frac{q}{2}\right)^{2N}
+\end{equation}
+Look at \textit{near} peak ($q_A=q/2+x$, $q_B=q/2-x$) to get (after series expansion of logarithm):
+\begin{equation}
+\Omega \approx \Omega_{max}\exp\left(-N\left(\frac{2x}{q}\right)^2\right)
+\end{equation}
+Gaussian with mean $0$ and $\sigma=q/2\sqrt{N}$. Thermodynamic limit: \textit{measurable fluctuations away from the most likely macrostate never occur}.
+\subsection{Ideal Gas}
+Multiplicity has to be proportional to $V$ and $V_p$ (volume in momentum space). Single particle: molecule's kinetic energy must be $U$ so $U=m/2(v_x^2+v_y^2+v_z^2)$, $p_x^2+p_y^2+p_z^2=2mU$ (sphere with radius $L_p=\sqrt{2mU}$. Number of distinct position states is $L/\Delta x$ (with $L$ length of the box) and distinc momentum states $L_p/\Delta p$. Total number of states $LL_p/(\Delta x\Delta p)=LL_p/h$. In $3D$: $\Omega_1=VV_p/h^3$ for a single particle. More particles: Total energy is constrained so $p_{1x}^2+p_{2x}^2+... = 2mU$. So for two particles: $\Omega_2=V^2/h^6 \cdot $ (area of momentum hypersphere). Indistinguishable:
+\begin{equation}
+\Omega_N=\frac{1}{N!}\frac{V^N}{h^{3N}}\times \mathrm{area\ of\ momentum\ hypersphere}=\frac{1}{N!}\frac{V^N}{h^{3N}}\frac{2\pi^{3N/2}}{\left(\frac{3N}{2}-1\right)!}(\sqrt{2mU})^{3N-1}\approx \frac{1}{N!}\frac{V^N}{h^{3N}}\frac{\pi^{3N/2}}{(3N/2)!}\left(\sqrt{2mU}\right)^{3N}=f(N)V^NU^{3N/2}
+\end{equation}
+So that entropy:
+\begin{equation}
+S=Nk\ln V+\frac{3}{2}Nk\ln U+k\ln f(N)
+\end{equation}
+Interacing ideal gases: multiply functions. Width of peak: $U_{tot}/\sqrt{3N/2}$. Exchange volume: $V_{tot}/\sqrt{N}$.
+\begin{equation}
+S=Nk\left[\ln \left(\frac{V}{N}\left(\frac{4\pi mU}{2Nh^2}\right)^{3/2}\right)+\frac{5}{2}\right]\ \quad \mathrm{(Sackur-Tetrode)}\quad \Delta S=Nk\ln \frac{V_f}{V_i} \quad (\mathrm{U,N\ fixed})
+\end{equation}
+Differentiating $S$ and using $U=3NkT/2$ gives:
+\begin{equation}
+\mu = -kT\ln \left[\frac{V}{N}\left(\frac{2\pi m kT}{h^2}\right)^{3/2}\right]
+\end{equation}
+Alternatively: use $G=N\mu$ to get $\partial \mu/\partial P =1/N \partial G/\partial P = V/N=kT/P$. Integrate to get:
+\begin{equation}
+\mu(T,P)=\mu^o(T)+kT\ln(P/P_0)
+\end{equation}
+Ideal gas: take $P$ to be the partial pressure.
+\begin{equation}\label{eq:IdealGasMu}
+\mu=-kT\ln \left[\frac{V}{N}\left(\frac{2\pi m kT}{h^2}\right)^{3/2}\right]
+\end{equation}
+Differentiating the entropy gives $U=3NKT/2$, so that $C_V=3Nk/2$.
 
 \subsection{Multiplicity of a Large Einstein Solid}
 \begin{equation}
@@ -239,6 +300,21 @@ If can exchange volume:
 \begin{equation}
 S = k\ln\Omega. \qquad \Omega = e^{S/k}
 \end{equation}
+\subsubsection*{Entropy of mixing}
+Distinguishable particles, initially separated into $V/2$ then allowed to expand:
+\begin{equation}
+\Delta S=2Nk\ln 2 \quad  (\mathrm{distinguishable)}
+\end{equation}
+If a fraction of molecules, $x$ is of species $B$::
+\begin{equation}
+\Delta S_{\mathrm{mixing}}=-Nk\left[x\ln x+(1-x)\ln (1-x)\right]
+\end{equation}
+For an ideal mixture (denser system, two types of molecules are of the same size and interact with each other the same way):
+\begin{equation}
+\Delta S_{\mathrm{mixing}}=k\ln {N\choose N_A}
+\end{equation}
+
+$\Delta S_{\mathrm{mixing}} = S$ if there are no interaction between the two types of molecules.
 \subsection{Entropy of Ideal Gas}
 Monatomic ideal gas, Sackur-Tetrode eq:
 \begin{equation}
@@ -352,6 +428,35 @@ From second law \eqref{eq:heatSecond} we get
 COP \leq \frac{1}{T_h/T_c - 1} = \frac{T_c}{T_h - T_c}
 \end{equation}
 
+\section{Engines and Refrigerators}
+\subsection{Heat Engines}
+Heat absorbed from a hot reservoir, $T_h$, waste heat dumped into a cold reservoir $T_c$. Heat abstakenorbed from the hot reservoir is $Q_h$, heat expelled to the cold reservoir is $Q_c$. Efficiency: benefit/cost ratio: $e=W/Q_h$. For cyclic engines: must have that the heat absorbed precisely equals the heat expelled, so $Q_h=Q_c+W$. Get:
+\begin{equation}
+e=1-\frac{Q_c}{Q_h}
+\end{equation}
+Invoke second law: entropy cannot decrease: must expel at least as much entropy as it absorbs to be cyclical. This gives:
+\begin{equation}
+\frac{Q_c}{T_c}\geq \frac{Q_h}{T_h} \implies e \leq 1-\frac{T_c}{T_h}
+\end{equation}
+Less effective: must get rid of more entropy, so the heat dumped into the cold reservoir has to increase. Note that if the temperature of the heat engine when taking in heat from the hot reservoir is less than $T_h$, then efficiency will be lower.\\
+\textbf{Carnot}\\
+For Carnot cycle: begin at tempererature only infinitesimally smaller than $T_h$, absorb $Q_h$ (slowly) - expand gas isothermally. Same when the gas is dumping the waste heat - compress isothermally. To change temperature: do an adiabatic compression/expansion (no heat flow,  so $\Delta S=0$).
+\includegraphics[scale=0.5]{carnot.png}
+\subsection{Refrigerators}
+Heat engine in reverse - simply reverse the arrows (put in work to suck out heat from the cold reservoir $Q_c$ and dump it into the hot reservoir $Q_h$. Coefficient of performance, COP is benefit$/$cost $=$ $Q_c/W$. By the first law, $Q_h=Q_c+W$ (we put \textit{in} work) so that the Coefficient of Performance becomes:
+\begin{equation}
+COP=\frac{Q_c}{Q_h-Q_c}
+\end{equation}
+By the second law, the inequalities are now reversed from previously (entropy flows in the opposite direction) so that:
+\begin{equation}
+\frac{Q_h}{T_h}\geq \frac{Q_c}{T_c}
+\end{equation}
+Which gives:
+\begin{equation}
+\mathrm{COP}\leq \frac{T_c}{T_h-T_c}
+\end{equation}
+
+
 \section{Free Energy and Chemical Thermodynamics}
 \subsection{Free Energy as Available Work}
 Helmholtz Free Energy: Total energy needed to create the system, minus the heat you can get from the environment for free at temperature $T$. For constant $T$:
@@ -383,6 +488,8 @@ dG = - SdT + VdP + \mu dN
 \begin{equation}
 S = -\pd{G}{T}{P,N}, \qquad V = -\pd{G}{P}{T,N},\qquad \mu = \pd{G}{N}{T,P}
 \end{equation}
+
+These identities is correct if the process is reversible. Then the first law $dE = dU = Q + W$ holds.
 \subsection{ Free Energy as a Force towards Equilibrium}
 \begin{equation}
 dS_{total} = dS + dS_R, \qquad dS = \frac{1}{T}dU  + \frac{P}{T}dV - \frac{\mu}{T}dN
@@ -418,6 +525,36 @@ $P^\circ$ is the atmospheric pressure, and $\mu^\circ$ is $\mu$ at this pressure
 \subsection{Phase Transformations of Pure Substances}
 \textbf{Vapor pressure}: Pressure at which a gas can coexist with its solid or liquid phase. \textbf{Triple point}: Point where all three phases can coexist. \textbf{Critical Point}: No longer a discontinuous change from liquid to gas. \textbf{Curie Temperature}: Temperature where magnetization disappears, so the phase boundary ends at a critical temperature.
 
+\subsection{Chemical Equilibrium}
+Equilibrium condition: Gibb's free energy minimized (if at room temperature and atmospheric pressure), i.e. $dG=\sum_i \mu_idN_i=0$. Generally: replace species by chemical potential, keep stochiometric ratio. Example:
+\begin{equation}
+N_2+3H_2 \leftrightarrow 2NH_3 \implies \mu_{N_2}+3\mu_{H_2}=2\mu_{NH_3}
+\end{equation}
+\subsubsection{Gaseous:}
+Nitrogen fixation, $N_2+3H_2 \leftrightarrow 2NH_3$. Assume ideal gas, use $\mu_{N_2}=\mu^o_{N_2}+kT\ln\left(P_{N_2}/P_0\right)$, where $\mu_0$ is the chemical potential when its partial pressure is $P_0$. Gather all $\mu_0$ on one side, and multiply through by $N_A$ to get $\Delta G^o$. Get:
+\begin{equation}
+\frac{P^2_{NH_3}(P^o)^2}{P_{N_2}P^3_{NH_3}}=K=e^{-\Delta G^o/RT}
+\end{equation}
+Where each pressure is raised to the power of its stochiometric coefficient and there are enough powers of $P^o$ to make the expression unitless.
+\subsection{Disassociation:}
+$H_2O\leftrightarrow H^++OH^-$. Use $\mu^o_{H_2O}=\mu^o_{H^+}+kT\ln m_{H^+}+\mu_{OH^-}^o + kT\ln m_{OH^-}$ assuming the disassociation is small and $m$ is the molality (mole solute per kilogram solvent). Get:
+\begin{equation}
+m_{H^+}m_{OH^-}=e^{-\Delta G^o/RT}
+\end{equation}
+Where the standard states are 1 molal.
+\subsection{Oxygen dissolving:}
+$O_2(g)\leftrightarrow O_2(aq)$.
+Use $\mu_{gas}^o+kT\ln(P/P^o)=\mu_{solute}^o+kT\ln m$ to get:
+\begin{equation}
+\frac{m}{P/P^o}=e^{-\Delta G_0/RT}
+\end{equation}
+\subsection{Ionization of hydrogen}
+$H\leftrightarrow p+e$. Treat all as ideal gases, use equation \ref{eq:IdealGasMu}. Put in ionization energy $I$ explicitly, so that $\mu_H=\mu-I$ where $\mu$ is from equation \ref{eq:IdealGasMu} and $I$ is $13.6$ eV. Use ideal gas law to express with pressure, use that mass of proton and hydrogen are approximately equal, and get:
+\begin{equation}
+\frac{P_p}{P_H}=\frac{kT}{P_e}\left(\frac{2\pi m_e kT}{h^2}\right)^{3/2} e^{-I/kT} \quad (\mathrm{Saha\ equation})
+\end{equation}
+Note that $P_e/kT=N_e/V$.
+
 \subsection{Diamonds and Graphite}
 \textbf{At a given temperature and pressure, the stable phase is always the one with the lower Gibbs free energy}
 
@@ -438,6 +575,10 @@ at phase boundary. $dG_l = dG_g$ to remain at phase boundary. Thus
 \Rightarrow \frac{dP}{dT} = \frac{S_g - S_l}{V_g - V_l} = \frac{L}{T\Delta V}
 \end{equation}
 using the (total) latent heat $S_g - S_l = L/T$ and $V_g - V_l = \Delta V$. This is the Clausius-Clapeyron Relation.
+\begin{equation}
+\frac{dP}{dT} = \frac{\Delta S}{\Delta V} \Rightarrow \Delta V T \frac{dp}{dT} = l
+\end{equation}
+$l = L/N$ vapor heat per particle	
 
 \subsection{The van der Waals Model}
 \begin{equation}
@@ -538,6 +679,12 @@ For noninteracting, indistinguishable particles
 \begin{equation}
 Z_{total} =\frac{1}{N!} Z_1^N
 \end{equation}
+\\
+Given a system with $N_A$ A-particles and $N_B$ B-particles, with $N = N_A + N_B$. The partition function becomes
+
+\begin{equation}
+Z = \binom{N}{N_A}Z_A^{N_A}Z_B^{N_B}
+\end{equation}
 
 \subsection{Ideal Gas Revisited}
 \begin{equation}
@@ -550,7 +697,7 @@ Where $E_{tr}$ is the transitional kinetic energy and $E_{int}$ is the internal 
 \begin{equation}
 Z_{1D} = \sum_ne^{-E_n/kT} = \sum_n e^{-h^2n^2/8mL^2kT}
 \end{equation}
-Doing this as an integration we get
+Doing this as an integration from $0$ to $\infty$ we get
 \begin{equation}
 Z_{1D} = \sqrt{\frac{2\pi mk T}{h^2}}L = \frac{L}{\ell_Q} \Rightarrow \ell_Q = \frac{h}{\sqrt{\pi mkT}} 
 \end{equation}
@@ -604,7 +751,7 @@ Where $x = (\epsilon - \mu)/kT$. For reference: for the Boltzmann distribution
 \end{equation}
 Using $\mu = -kT\ln (Z_1/N)$
 \subsection{Degenerated Gas}
-For Boltzmann statistics to apply $V/N>> v_Q$.
+For Boltzmann statistics to apply $V/N>> v_Q$. Classical limit $(\epsilon - \mu=/kT >> 1$. Then we can ignore the $1$ in the FD distribution.	
 \subsubsection{Zero Temperature}
 \begin{equation}
 \epsilon_F = \mu(T = 0)
@@ -641,6 +788,11 @@ U = \frac{3}{5}N\epsilon_F + \frac{\pi^2}{4}N\frac{(kT)^2}{\epsilon_F}, \qquad C
 \begin{equation}
 \epsilon = \frac{h^2}{8mL^2}n^2 \Rightarrow n = \sqrt{\frac{8mL^2}{h^2}}\sqrt{\epsilon} \Rightarrow dn = \sqrt{\frac{8mL^2}{h^2}} \frac{1}{2\sqrt{\epsilon}}d\epsilon
 \end{equation}
+From
+\begin{equation}
+U = \pi \int_0^{n_{max}}\epsilon(n) n^2 dn
+\end{equation}
+We get
 \begin{equation}
 U = \int_0^{\epsilon_F}\epsilon\left[\frac{\pi}{2}\left(\frac{8mL^2}{h^2}\right)^{3/2}\sqrt{\epsilon}\right] d\epsilon
 \end{equation}
@@ -724,6 +876,32 @@ Stefan-Boltzmann constant $\sigma$. Stefan's Law:
 \begin{equation}
 \text{power per unit area} = \frac{2\pi^5}{15}\frac{(kT)^4}{h^3c^2} = \sigma T^4
 \end{equation}
+\subsection{Blackbody Radiation}
+Ultraviolet catastrophe: Each mode in the field has energy $kT$, infinite number of modes, infinite energy. Solution: $E_n=nhf$, $n\in \mathbb{N}^+$. For a single oscillator then:
+\begin{equation}
+Z=1+e^{-\beta hf}+e^{-2\beta hf}+...=\frac{1}{1-e^{-\beta hf}}\quad \overline{E}=\frac{hf}{e^{hf/kT}-1}
+\end{equation}
+Average number of "units of energy" (photons) in a single oscillator is $\overline{n}=1/(\exp(hf/kT)-1)$ (Planck Distribution). But photons are bosons, must follow Bose-Einstein $\rightarrow$ $\mu=0$ for photons (follows also because $N$ arbitrary for photons so $(\partial F/\partial N)_{T,V}=0=\mu$ or from $e\leftrightarrow e+\gamma \implies \mu_e=\mu_e+\mu_{\gamma}$). Energy for photons is $\epsilon=pc=hcn/2L$. Each wave shape can hold two photons. Gives the total energy per unit volume as:
+\begin{equation}
+\frac{U}{V}=\int_0^{\infty} \underbrace{\frac{8\pi \epsilon^3/(hc)^3}{\exp(\epsilon/kT)-1}}_{\mathrm{Spectrum\ of\ photon}} d\epsilon = \frac{8\pi^5(kT)^4}{15 (hc)^3}
+\end{equation}
+Spectrum peaks at $\epsilon=2.82 kT$ (Wien's law). Heat capacity/entropy:
+\begin{equation}
+C_V=4aT^3 \quad S(T)=\int_0^T \frac{C_V(T')}{T'}dT'=4aT^3 \quad N=8\pi V\left(\frac{kT}{hc}\right)^3 \int_0^{\infty} \frac{x^2}{e^x-1}dx
+\end{equation}
+Where $a=8\pi^5k^4V/15(hc)^3$.
+\subsection{Photons Escaping through a Hole}
+Spectrum outside of box with hole is same as inside, as all photons travel at the same speed. Energy comes from spherical shell, distance $R$ from hole, with angle $\theta$ to the normal of the hole. Look at chunk of spherical shell: volume $R^2 \sin \theta c\ dt d\theta d\phi$. Energy is this times $U/V$.Probability of escape is $A\cos \theta/4\pi R^2$ with $A$ aperture size. Total energy escaping:
+\begin{equation}
+\int_0^{2\pi}d\phi \int_0^{\pi/2} d\theta \frac{A\cos \theta}{4\pi}\frac{U}{V}cdt\sin \theta = \frac{A}{4}\frac{U}{V}cdt
+\end{equation}
+Which gives power per unit area as:
+\begin{equation}
+P=\frac{2\pi^5}{15}\frac{\left(kT\right)^4}{h^3c^2}=\sigma T^4 \ \mathrm{(Stefan-Boltzmann\ law)}
+\end{equation}
+If reflecting: remember to include emissitivity, $e$.
+\subsection{The Sun and the Earth}
+Absorbed power: solar constant$\times \pi R^2= 4\pi R^2\sigma T^4$ : emitted power.
 \subsubsection{Radiation from Other Object}
 \textbf{Emissivity} $e$:
 \begin{equation}
@@ -743,12 +921,21 @@ T = \left(\frac{\text{luminosity}}{\sigma A}\right)^{1/4} = 5800 K \Rightarrow\e
 Real: $288$ K
 
 \section{Div:}
+\subsection{Div:}
+tilstandsliking = pressure
+\begin{equation}
+n = \frac{N}{V} = \frac{P}{kT},\qquad (\text{From }PV = NkT)
+\end{equation}
 \subsection{Maxwell's relations}
 \begin{equation}
 \pd{T}{V}{S} = -\pd{P}{S}{V}, \qquad \pd{T}{P}{S} = \pd{V}{S}{P}
 \end{equation}
 \begin{equation}
 \pd{S}{V}{T} = \pd{P}{T}{V}, \qquad -\pd{S}{P}{T} = \pd{V}{T}{P}
+\end{equation}
+These comes from the fact that 
+\begin{equation}
+\pd{^2F}{x\partial y}{} = \pd{^2F}{y\partial x}{}
 \end{equation}
 \subsection{Ensembles}
 \subsubsection{Micro canonical}
@@ -771,6 +958,13 @@ Real: $288$ K
 \item $\bar{n} = \frac{kT}{\mathcal{Z}}\frac{\partial \mathcal{Z}}{\partial \beta}$
 \item Grand Potential $\Phi = U - TS - \mu N = -kT\ln \mathcal{Z}$
 \end{itemize}
+\subsection{Div Functions}
+\begin{equation}
+e^x + e^{-x} = 2\cosh x
+\end{equation}
+\begin{equation}
+P(\text{noyaktig saa mange riktige paa saa mange forsoek}) = \binom{N}{n}p^n(1-p)^{N-n}
+\end{equation}
 
 \end{document}
 
