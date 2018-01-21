@@ -117,9 +117,7 @@ For adiabatic compression:
 V_f T_f^{f/2} = V_i T_i^{f/2} = \text{constant}, \qquad VT^{f/2} = \text{constant},\qquad V^\gamma P = \text{constant}
 \end{equation}
 $\gamma = (f+2)/f$ is the adiabatic exponent. 
-
-Adiabatic = constant entropy! Find the tilstandslikning for the pressure. Insert this into to entropy and find values for $f(p,A) = $constant, which makes the entropy constant. This $f(p,A) = $constant is the adiabatic equation
-
+Adiabatic = constant entropy, no heat transfer! Find the tilstandslikning for the pressure. Insert this into to entropy and find values for $f(p,A) = $constant, which makes the entropy constant. This $f(p,A) = $constant is the adiabatic equation
 \subsection{Heat Capacity}
 \begin{equation}
 C = \frac{ Q}{\Delta T} \text{ (heat capacity)}, \qquad c = \frac{C}{m} \text{ (specific heat capacity})
@@ -135,7 +133,6 @@ C_V =\left( \frac{\partial U}{\partial T}\right)_V, \qquad C_P = \left(\frac{\De
 C_V = \frac{\partial}{\partial T }\frac{NfkT}{2} = \frac{Nfk}{2}, \qquad \left(\frac{\partial V}{\partial T}\right)_P = \frac{\partial}{\partial T }\frac{NkT}{P} = \frac{Nk}{P} \Rightarrow C_P = C_V + Nk = C_V + nR
 \end{equation}
 rule of Dulong And Petit: heat capacity of solid should go towards $3R$
-
 \subsection{Latent Heat}
 For phase transformation
 \begin{equation}
@@ -153,7 +150,6 @@ H = U + PV
 \begin{equation}
 C_P = \left(\frac{\partial H}{\partial T}\right)_P
 \end{equation}
-
 \subsection{Rates of Processes}
 \subsubsection{Heat Conduction}
 \begin{equation}
@@ -167,18 +163,15 @@ Fourier heat conduction law
 \begin{equation}
 \bar{v}\propto \sqrt{T}
 \end{equation}
-
 \subsubsection{Viscosity}
 \begin{equation}
 F_x \propto \frac{A\cdot (u_{x,top}- u_{x,bottom})}{\Delta z} \Rightarrow \frac{|F_x|}{A} = \eta \frac{du_x}{dz}
 \end{equation}
-
 \subsubsection{Diffusion}
 \begin{equation}
 J_x = -D\frac{dn}{dx}
 \end{equation}
 $J_x$, flux has units number of particles per unit area per unit time.
-
 \section{The Second Law}
 \subsection{Two-State System}
 \begin{equation}
@@ -199,13 +192,11 @@ $N$ is oscillators, $q$ is energy units.
 \begin{equation}
 q = 0, hf, 2hf, \ldots
 \end{equation}
-
 \subsection{Interacting Systems}
 \begin{equation}
 N_A = N_B, \qquad q_{total} = q_A + q_B
 \end{equation}
 \textbf{Fundamental assumption of statistical mechanics}: In an isolated system in thermal equilibrium, all accessible microstates are equally probable.
-
 \subsection{Stirling's Approximation}
 \begin{equation}
 N!\approx N^Ne^{-N}\sqrt{2\pi N},\qquad \ln N! \approx N\ln N - N
@@ -259,7 +250,6 @@ Ideal gas: take $P$ to be the partial pressure.
 \mu=-kT\ln \left[\frac{V}{N}\left(\frac{2\pi m kT}{h^2}\right)^{3/2}\right]
 \end{equation}
 Differentiating the entropy gives $U=3NKT/2$, so that $C_V=3Nk/2$.
-
 \subsection{Multiplicity of a Large Einstein Solid}
 \begin{equation}
 \Omega(N,q) \approx \frac{(q+N)!}{q!N!}
@@ -295,7 +285,6 @@ If can exchange volume:
 \begin{equation}
 \text{width of peak} = \frac{V_{total}}{\sqrt{N}}
 \end{equation}
-
 \subsection{Entropy}
 \begin{equation}
 S = k\ln\Omega. \qquad \Omega = e^{S/k}
@@ -313,7 +302,6 @@ For an ideal mixture (denser system, two types of molecules are of the same size
 \begin{equation}
 \Delta S_{\mathrm{mixing}}=k\ln {N\choose N_A}
 \end{equation}
-
 $\Delta S_{\mathrm{mixing}} = S$ if there are no interaction between the two types of molecules.
 \subsection{Entropy of Ideal Gas}
 Monatomic ideal gas, Sackur-Tetrode eq:
@@ -343,7 +331,6 @@ Algorithm:
 \item Take to logarithm to find $S$
 \item Differentiate $S$ with respect to $U$ and the the reciprocal to find the temperature $T$ as a function of $U$ and other variables.
 \end{itemize}
-
 \subsubsection{Measuring Entropies}
 For constant(or quatistatic) volume and no work
 \begin{equation}
@@ -357,6 +344,10 @@ dS = \frac{C_V dT}{T},\qquad \Delta S = \int_{T_i}^{T_f}\frac{C_V}{T}dT,\qquad S
 \subsection{Paramagnetism}
 \begin{equation}
 U = \mu B(N_\downarrow - N_\uparrow) = \mu B (N- 2N_\uparrow),\qquad M = \mu(N_\uparrow - N_\downarrow) = -\frac{U}{B}
+\end{equation}
+\subsection{Ising}
+\begin{equation}
+E = \sum_i \epsilon_i + \sum_{ij}\epsilon_{ij}, \qquad  \epsilon_{ij} = -Js_is_j
 \end{equation}
 \subsubsection{Analytic Solution}
 \begin{equation}
@@ -383,7 +374,7 @@ Curie's law.
 \subsection{Summery}
 Thermodynamic identity
 \begin{equation}
-dU = TdS - PdV + \mu dN
+dU = TdS - PdV + \mu dN \Rightarrow \mu = -T\pd{S}{N}{U,V} = \pd{U}{N}{S,V}
 \end{equation}
 $VNP:$
 \begin{table}[H]
@@ -508,6 +499,8 @@ dS_{total}=-\frac{1}{T}dG
 \end{equation}
 \subsection{Extensive and Intensive Quantities}
 Double the amount of stuff: Quantities that doubles are extrinsic; those who do not are intensive. \textbf{Extensive}: V, N, S, U, H, F, G, mass. \textbf{Intensive}: T, P, $\mu$, density. Extensive$\times$intensive = extensive. Extensive$\times$extensive = neither. Type$\times$same type = same type. Extensive $+$ intensive is not allowed.
+
+Extensive: $E(\alpha N) = \alpha E(N)$. Intensive: $I(\alpha N) = I(N)$
 \subsection{Gibbs Free Energy and Chemical Potential}
 Given constant $T$ and $P$ we have that
 \begin{equation}
@@ -526,7 +519,7 @@ $P^\circ$ is the atmospheric pressure, and $\mu^\circ$ is $\mu$ at this pressure
 \textbf{Vapor pressure}: Pressure at which a gas can coexist with its solid or liquid phase. \textbf{Triple point}: Point where all three phases can coexist. \textbf{Critical Point}: No longer a discontinuous change from liquid to gas. \textbf{Curie Temperature}: Temperature where magnetization disappears, so the phase boundary ends at a critical temperature.
 
 \subsection{Chemical Equilibrium}
-Equilibrium condition: Gibb's free energy minimized (if at room temperature and atmospheric pressure), i.e. $dG=\sum_i \mu_idN_i=0$. Generally: replace species by chemical potential, keep stochiometric ratio. Example:
+Equilibrium condition: Gibb's free energy minimized (if at room temperature and atmospheric pressure), i.e. $dG=\sum_i \mu_idN_i=0$. Generally: replace species by chemical potential, keep stoichiometric ratio. Example:
 \begin{equation}
 N_2+3H_2 \leftrightarrow 2NH_3 \implies \mu_{N_2}+3\mu_{H_2}=2\mu_{NH_3}
 \end{equation}
@@ -855,7 +848,7 @@ The energy density per unit photon energy or the spectrum is
 \begin{equation}
 u(\epsilon) = \frac{8\pi}{(hc)^3}\frac{\epsilon^3}{e^{\epsilon/kT}-1}
 \end{equation}
-with $x = \epsilon/kT$
+with $x = \epsilon/kT$, with $\epsilon = hc/\lambda$
 \begin{equation}
 \frac{U}{V} = \frac{8\pi(kT)^4}{(hc)^3}\int_0^\infty\frac{x^3}{e^x - 1} dx
 \end{equation}
@@ -871,11 +864,6 @@ $a = 8\pi^5k^4V/15(hc)^3$
 \begin{equation}
 S(T) = \int_0^T\frac{C_V(T)}{T}dT = \frac{4}{3}aT^3
 \end{equation}
-\subsubsection{Photons Escaping Though a Hole}
-Stefan-Boltzmann constant $\sigma$. Stefan's Law:
-\begin{equation}
-\text{power per unit area} = \frac{2\pi^5}{15}\frac{(kT)^4}{h^3c^2} = \sigma T^4
-\end{equation}
 \subsection{Blackbody Radiation}
 Ultraviolet catastrophe: Each mode in the field has energy $kT$, infinite number of modes, infinite energy. Solution: $E_n=nhf$, $n\in \mathbb{N}^+$. For a single oscillator then:
 \begin{equation}
@@ -890,6 +878,23 @@ Spectrum peaks at $\epsilon=2.82 kT$ (Wien's law). Heat capacity/entropy:
 C_V=4aT^3 \quad S(T)=\int_0^T \frac{C_V(T')}{T'}dT'=4aT^3 \quad N=8\pi V\left(\frac{kT}{hc}\right)^3 \int_0^{\infty} \frac{x^2}{e^x-1}dx
 \end{equation}
 Where $a=8\pi^5k^4V/15(hc)^3$.
+
+From \textbf{TDI}:
+\begin{equation}
+dU = TdS - PdV \Rightarrow \pd{U}{V}{T} = T\pd{S}{V}{T} - P\pd{V}{V}{T} = T\pd{S}{V}{T} - P
+\end{equation}
+Use Maxwell relation
+\begin{equation}
+\pd{S}{V}{T} = \pd{P}{T}{V}
+\end{equation}
+And $U = uV$
+\begin{equation}
+u = u \pd{V}{V}{T} = \pd{U}{V}{T} = T\pd{P}{T}{V} - P
+\end{equation}
+Use that the radiation pressure is $P = u/3$
+\begin{equation}
+u = \frac{T}{3}\pd{U}{T}{V} - \frac{u}{3} \Rightarrow \frac{4u}{3} = \frac{T}{3}\frac{du}{dT} \Rightarrow\frac{dT}{T} = \frac{1}{4}\frac{du}{u}\Rightarrow u = aT^4
+\end{equation}
 \subsection{Photons Escaping through a Hole}
 Spectrum outside of box with hole is same as inside, as all photons travel at the same speed. Energy comes from spherical shell, distance $R$ from hole, with angle $\theta$ to the normal of the hole. Look at chunk of spherical shell: volume $R^2 \sin \theta c\ dt d\theta d\phi$. Energy is this times $U/V$.Probability of escape is $A\cos \theta/4\pi R^2$ with $A$ aperture size. Total energy escaping:
 \begin{equation}
@@ -900,8 +905,8 @@ Which gives power per unit area as:
 P=\frac{2\pi^5}{15}\frac{\left(kT\right)^4}{h^3c^2}=\sigma T^4 \ \mathrm{(Stefan-Boltzmann\ law)}
 \end{equation}
 If reflecting: remember to include emissitivity, $e$.
-\subsection{The Sun and the Earth}
-Absorbed power: solar constant$\times \pi R^2= 4\pi R^2\sigma T^4$ : emitted power.
+
+
 \subsubsection{Radiation from Other Object}
 \textbf{Emissivity} $e$:
 \begin{equation}
@@ -916,7 +921,7 @@ T = \left(\frac{\text{luminosity}}{\sigma A}\right)^{1/4} = 5800 K \Rightarrow\e
 \epsilon = 2.82kT
 \end{equation}
 \begin{equation}
-(\text{solar constant}) \cdot \pi R^4 = 4\pi R^2 \sigma T^4 \Rightarrow T_{earth} = 279 K
+Absorbed power: solar constant\times \pi R^2= 4\pi R^2\sigma T^4 : emitted power. \Rightarrow T_{earth} = 279 K
 \end{equation}
 Real: $288$ K
 
@@ -925,6 +930,10 @@ Real: $288$ K
 tilstandsliking = pressure
 \begin{equation}
 n = \frac{N}{V} = \frac{P}{kT},\qquad (\text{From }PV = NkT)
+\end{equation}
+viralutviklingen
+\begin{equation}
+\frac{PV}{NkT} = 1 + A \rho + B\rho^2, \qquad \rho = N/V
 \end{equation}
 \subsection{Maxwell's relations}
 \begin{equation}
@@ -941,23 +950,37 @@ These comes from the fact that
 \subsubsection{Micro canonical}
 (NVU) isolated. Multiplicity $\Omega$ and entropy $S = k\ln\Omega$
 \subsubsection{Canonical}
-(NVT). $N$ and $V$ constant, $U$ varies.
+(NVT). $N$ and $V$ constant, $U$ varies (exchanges heat with a reservoir).
 \begin{itemize}
+\item Boltzmann Factor $e^{-\beta E(i)}$
 \item State: $Z = \sum_i e^{-\beta E(i)}$
 \item $T$ in equilibrium
 \item Probability $P(i) = \frac{1}{Z}e^{-\beta E_i}$
 \item $\bar{E} = \frac{1}{Z}\frac{\partial Z}{\partial \beta}$
-\item Helmholtz $F$
+\item Helmholtz $F = -kT\ln Z$
 \end{itemize}
 \subsubsection{Grand Canonical}
-($\mu$VT)
+($\mu$VT) (exchanges heat and particles with a reservoir)
 \begin{itemize}
 \item $V$ constant
 \item $T$ and $\mu$ in equilibrium
-\item Gibbs factor
+\item Gibbs factor $e^{-\beta E(i)-\mu N(i)}$
 \item $\bar{n} = \frac{kT}{\mathcal{Z}}\frac{\partial \mathcal{Z}}{\partial \beta}$
 \item Grand Potential $\Phi = U - TS - \mu N = -kT\ln \mathcal{Z}$
 \end{itemize}
+\subsection{Laws}
+\subsubsection{First}
+\begin{equation}
+dU = Q + W
+\end{equation}
+\subsubsection{Second}
+For isolated systems (NVE) $\Delta S \geq 0$. For NVT $\Delta F \leq 0$. For NPT $\Delta G \leq 0$
+\subsubsection{Third}
+$S\rightarrow $ constant when $T\rightarrow 0$
+\subsection{Random walk(virrevandring)}
+Step $i$ is $s_i = \pm 1$. Distance from origin $x = \sum_i x_i$.Midlere kvadratisk distanse: $\langle x^2 \rangle = 2Dt$. $t$ er tid, og $D$ er diffusjonskoeffisienten.
+\subsection{Law of Corresponding State}
+All gases at corresponding states should behave similarly. The law of corresponding states is an empirical law which encapsulates the finding that the equations of state for many real gases are remarkably similar when they are expressed in terms of reduced temperatures $T_r = T/T_c$, pressures, $p_r = p/p_c$ and volumes $V_r = V/V_c$. According to van der Waals, the theorem of corresponding states (or principle of corresponding states) indicates that all fluids, when compared at the same reduced temperature and reduced pressure, have approximately the same compressibility factor and all deviate from ideal gas behavior to about the same degree
 \subsection{Div Functions}
 \begin{equation}
 e^x + e^{-x} = 2\cosh x
@@ -965,6 +988,17 @@ e^x + e^{-x} = 2\cosh x
 \begin{equation}
 P(\text{noyaktig saa mange riktige paa saa mange forsoek}) = \binom{N}{n}p^n(1-p)^{N-n}
 \end{equation}
+\section{Summary Table:}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{skjema1}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{skjema2}
+\end{figure}
+
+
 
 \end{document}
 
